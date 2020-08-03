@@ -61,16 +61,16 @@ class Deeplink:
     def mock_payment(self, amount, upiId):
         path = "/triggers/funds/addCredit"
         payload = {
-            "amount": 0,
-            "destinationAccount": {"accountID": 'Biller-66147538470438-001', "ifsc": "EXTERNALBRANCH001"},
-            "sourceAccount": {"accountID": "123123123", "ifsc": "1231231"},
+            "amount": amount,
+            "destinationAccount": {"accountID": upiId},
+            "sourceAccount": {"accountID": "customer@vpa"},
             "type": "UPI",
         }
 
         headers = generate_setu_headers(
             self.schemeId, self.secret, self.productInstance
         )
-        print("Coming soon!")
-        # response = requests.post(self.url + path,json=payload, headers=headers)
-        # data= response.json()
-        # print('mock----',data)
+        response = requests.post(self.url + path, json=payload, headers=headers)
+        if response.status_code != 200:
+            raise Exception("Failed to mock payment", )
+        return "Mock success"
