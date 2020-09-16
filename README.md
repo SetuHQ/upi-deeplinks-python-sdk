@@ -43,7 +43,7 @@ print(link["paymentLink"], link["platformBillID"])
 ```python
 from setu import deeplink
 
-status = dl.check_status(link['platformBillID'])
+status = dl.checkPaymentStatus(link['platformBillID'])
 print(status["status"])
 ```
 
