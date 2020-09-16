@@ -20,7 +20,6 @@ def generate_bearer_JWT(schemeId, secret):
 def verify_JWT(token, schemeId, secret):
     try:
         jwt.decode(token, secret, audience=schemeId)
-        print("Verified token")
     except jwt.PyJWTError:
         raise
 
