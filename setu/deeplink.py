@@ -32,14 +32,17 @@ class Deeplink:
         }
 
         if exactness == "EXACT_UP":
-            payload["validationRules"] = {"amount": {"maximum": 0, "minimum": amount}}
+            payload["validationRules"] = {
+                "amount": {"maximum": 0, "minimum": amount}}
         elif exactness == "EXACT_DOWN":
-            payload["validationRules"] = {"amount": {"maximum": amount, "minimum": 0}}
+            payload["validationRules"] = {
+                "amount": {"maximum": amount, "minimum": 0}}
 
         headers = generate_setu_headers(
             self.schemeId, self.secret, self.productInstance
         )
-        response = requests.post(self.url + path, json=payload, headers=headers)
+        response = requests.post(
+            self.url + path, json=payload, headers=headers)
         handle_setu_errors(response)
         data = response.json()
         self.platformBillID = data["data"]["platformBillID"]
@@ -70,7 +73,8 @@ class Deeplink:
         headers = generate_setu_headers(
             self.schemeId, self.secret, self.productInstance
         )
-        response = requests.post(self.url + path, json=payload, headers=headers)
+        response = requests.post(
+            self.url + path, json=payload, headers=headers)
         if response.status_code != 200:
             raise Exception("Failed to mock payment", )
         return "Mock success"
