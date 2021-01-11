@@ -10,7 +10,7 @@ def generate_JWT(schemeId, secret):
         "jti": str(uuid.uuid1()),
     }
 
-    return jwt.encode(payload, secret, algorithm="HS256").decode("utf-8")
+    return jwt.encode(payload, secret, algorithm="HS256")
 
 
 def generate_bearer_JWT(schemeId, secret):
