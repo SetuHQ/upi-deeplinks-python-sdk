@@ -7,7 +7,7 @@ from .errors import handle_setu_errors
 class URLS:
 
     class Sandbox:
-        url = "https://sandbox.setu.co/api"
+        url = "https://uat.setu.co/api"
 
     class Prod:
         url = "https://prod.setu.co/api"
