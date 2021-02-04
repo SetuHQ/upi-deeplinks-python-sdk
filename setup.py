@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='setu',
-    version='0.5.2',
+    version='0.5.3',
     url='https://github.com/SetuHQ/setu-python-sdk',
     author='Setu',
     author_email='dev.support@setu.co',
