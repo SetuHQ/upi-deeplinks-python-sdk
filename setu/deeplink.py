@@ -15,12 +15,13 @@ class URLS:
 
 class Deeplink:
 
-    def __init__(self, schemeId, secret, productInstance, mode="SANDBOX"):
+    def __init__(self, schemeId, secret, productInstance, authType="JWT", mode="SANDBOX"):
         self.schemeId = schemeId
         self.secret = secret
         self.productInstance = productInstance
         self.url = URLS.Sandbox.url if mode != "PRODUCTION" else URLS.Prod.url
         self.mode = mode
+        self.authType = authType
 
     # Generate UPI payment link method
     def create_payment_link(
@@ -62,12 +63,16 @@ class Deeplink:
 
         # Generate required headers
         headers = generate_setu_headers(
-            self.schemeId, self.secret, self.productInstance
+            self.schemeId, self.secret, self.productInstance, self.url, self.authType
         )
 
         # Call API with required parameters
+
+        if self.authType != 'JWT':
+            url = self.url + '/v2' +  path
+
         response = requests.post(
-            self.url + path, json=payload, headers=headers
+            url, json=payload, headers=headers
         )
 
         # Handle errors
