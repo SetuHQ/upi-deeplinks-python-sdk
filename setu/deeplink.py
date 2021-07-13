@@ -23,12 +23,13 @@ class Deeplink:
         self.mode = mode
         self.authType = authType
         
-        # Generate required headers
-        self.headers = generate_setu_headers(
-            self.schemeId, self.secret, self.productInstance, self.url, self.authType
-        )
-
+        
         if self.authType != 'JWT':
+            # Generate required headers
+            self.headers = generate_setu_headers(
+                self.schemeId, self.secret, self.productInstance, self.url, self.authType
+            )
+            # Set the url to v2
             self.url = self.url + '/v2'
 
     # Generate UPI payment link method
@@ -69,6 +70,12 @@ class Deeplink:
         if validationRules is not None:
             payload.update({"validationRules": validationRules})
 
+        # In case of JWT the token expires often enough to warrant creation of new tokens
+        if self.authType == 'JWT':
+            self.headers = generate_setu_headers(
+                self.schemeId, self.secret, self.productInstance, self.url, self.authType
+            )
+
         # Call API with required parameters
         response = requests.post(
             self.url + path, json=payload, headers=self.headers
@@ -86,6 +93,12 @@ class Deeplink:
     ):
         path = "/payment-links/{}".format(platformBillID)
         
+        # In case of JWT the token expires often enough to warrant creation of new tokens
+        if self.authType == 'JWT':
+            self.headers = generate_setu_headers(
+                self.schemeId, self.secret, self.productInstance, self.url, self.authType
+            )
+
         # Call API with required parameters
         response = requests.get(
             self.url + path, headers=self.headers
@@ -113,6 +126,12 @@ class Deeplink:
             },
             "type": "UPI",
         }
+
+        # In case of JWT the token expires often enough to warrant creation of new tokens
+        if self.authType == 'JWT':
+            self.headers = generate_setu_headers(
+                self.schemeId, self.secret, self.productInstance, self.url, self.authType
+            )
 
         # Call API with required parameters
         response = requests.post(
