@@ -22,6 +22,14 @@ class Deeplink:
         self.url = URLS.Sandbox.url if mode != "PRODUCTION" else URLS.Prod.url
         self.mode = mode
         self.authType = authType
+        
+        # Generate required headers
+        self.headers = generate_setu_headers(
+            self.schemeId, self.secret, self.productInstance, self.url, self.authType
+        )
+
+        if self.authType != 'JWT':
+            self.url = self.url + '/v2'
 
     # Generate UPI payment link method
     def create_payment_link(
@@ -61,18 +69,9 @@ class Deeplink:
         if validationRules is not None:
             payload.update({"validationRules": validationRules})
 
-        # Generate required headers
-        headers = generate_setu_headers(
-            self.schemeId, self.secret, self.productInstance, self.url, self.authType
-        )
-
         # Call API with required parameters
-
-        if self.authType != 'JWT':
-            url = self.url + '/v2' +  path
-
         response = requests.post(
-            url, json=payload, headers=headers
+            self.url + path, json=payload, headers=self.headers
         )
 
         # Handle errors
@@ -86,15 +85,10 @@ class Deeplink:
         platformBillID
     ):
         path = "/payment-links/{}".format(platformBillID)
-
-        # Generate required headers
-        headers = generate_setu_headers(
-            self.schemeId, self.secret, self.productInstance
-        )
-
+        
         # Call API with required parameters
         response = requests.get(
-            self.url + path, headers=headers
+            self.url + path, headers=self.headers
         )
 
         return response.json()
@@ -120,14 +114,9 @@ class Deeplink:
             "type": "UPI",
         }
 
-        # Generate required headers
-        headers = generate_setu_headers(
-            self.schemeId, self.secret, self.productInstance
-        )
-
         # Call API with required parameters
         response = requests.post(
-            self.url + path, json=payload, headers=headers
+            self.url + path, json=payload, headers=self.headers
         )
 
         return response
