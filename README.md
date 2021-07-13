@@ -33,7 +33,8 @@ dl = deeplink.Deeplink(
     "YOUR SCHEME ID",
     "YOUR JWT SECRET",
     "YOUR PRODUCT INSTANCE ID",
-    mode="PRODUCTION | SANDBOX" # default SANDBOX
+    mode="PRODUCTION | SANDBOX" # default SANDBOX,
+    authType= "JWT | OAUTH" # default JWT
 )
 ```
 

@@ -15,12 +15,22 @@ class URLS:
 
 class Deeplink:
 
-    def __init__(self, schemeId, secret, productInstance, mode="SANDBOX"):
+    def __init__(self, schemeId, secret, productInstance, authType="JWT", mode="SANDBOX"):
         self.schemeId = schemeId
         self.secret = secret
         self.productInstance = productInstance
         self.url = URLS.Sandbox.url if mode != "PRODUCTION" else URLS.Prod.url
         self.mode = mode
+        self.authType = authType
+        
+        
+        if self.authType != 'JWT':
+            # Generate required headers
+            self.headers = generate_setu_headers(
+                self.schemeId, self.secret, self.productInstance, self.url, self.authType
+            )
+            # Set the url to v2
+            self.url = self.url + '/v2'
 
     # Generate UPI payment link method
     def create_payment_link(
@@ -60,14 +70,15 @@ class Deeplink:
         if validationRules is not None:
             payload.update({"validationRules": validationRules})
 
-        # Generate required headers
-        headers = generate_setu_headers(
-            self.schemeId, self.secret, self.productInstance
-        )
+        # In case of JWT the token expires often enough to warrant creation of new tokens
+        if self.authType == 'JWT':
+            self.headers = generate_setu_headers(
+                self.schemeId, self.secret, self.productInstance, self.url, self.authType
+            )
 
         # Call API with required parameters
         response = requests.post(
-            self.url + path, json=payload, headers=headers
+            self.url + path, json=payload, headers=self.headers
         )
 
         # Handle errors
@@ -81,15 +92,16 @@ class Deeplink:
         platformBillID
     ):
         path = "/payment-links/{}".format(platformBillID)
-
-        # Generate required headers
-        headers = generate_setu_headers(
-            self.schemeId, self.secret, self.productInstance
-        )
+        
+        # In case of JWT the token expires often enough to warrant creation of new tokens
+        if self.authType == 'JWT':
+            self.headers = generate_setu_headers(
+                self.schemeId, self.secret, self.productInstance, self.url, self.authType
+            )
 
         # Call API with required parameters
         response = requests.get(
-            self.url + path, headers=headers
+            self.url + path, headers=self.headers
         )
 
         return response.json()
@@ -115,14 +127,15 @@ class Deeplink:
             "type": "UPI",
         }
 
-        # Generate required headers
-        headers = generate_setu_headers(
-            self.schemeId, self.secret, self.productInstance
-        )
+        # In case of JWT the token expires often enough to warrant creation of new tokens
+        if self.authType == 'JWT':
+            self.headers = generate_setu_headers(
+                self.schemeId, self.secret, self.productInstance, self.url, self.authType
+            )
 
         # Call API with required parameters
         response = requests.post(
-            self.url + path, json=payload, headers=headers
+            self.url + path, json=payload, headers=self.headers
         )
 
         return response
