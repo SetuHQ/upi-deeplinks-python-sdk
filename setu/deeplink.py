@@ -139,3 +139,25 @@ class Deeplink:
         )
 
         return response
+    
+    # Set Bill expiry UPI payment link 
+    def set_bill_expiry(
+        self,
+        platformBillID
+    ):
+        path = "/utilities/bills/{}/expire".format(platformBillID)
+        
+        # In case of JWT the token expires often enough to warrant creation of new tokens
+        if self.authType == 'JWT':
+            self.headers = generate_setu_headers(
+                self.schemeId, self.secret, self.productInstance, self.url, self.authType
+            )
+
+        # Call API with required parameters
+        response = requests.post(
+            self.url + path, headers=self.headers
+        )
+
+        return response.json()
+
+
