@@ -141,7 +141,7 @@ class Deeplink:
         return response
     
     # Set Bill expiry UPI payment link 
-    def set_bill_expiry(
+    def expire_payment_link(
         self,
         platformBillID
     ):
