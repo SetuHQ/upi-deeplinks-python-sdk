@@ -49,7 +49,8 @@ link = dl.create_payment_link(
         payeeName=String, # Optional
         expiryDate=String, # Optional
         settlement=Object, # Optional
-        validationRules=Object # Optional
+        validationRules=Object, # Optional
+        additionalInfo=Object # Optional
     )
 print(link)
 ```
