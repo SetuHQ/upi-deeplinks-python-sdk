@@ -1,11 +1,9 @@
 import requests
-import datetime
 from .auth import generate_setu_headers
 from .errors import handle_setu_errors
 
 
 class URLS:
-
     class Sandbox:
         url = "https://uat.setu.co/api"
 
@@ -14,20 +12,29 @@ class URLS:
 
 
 class Deeplink:
-
-    def __init__(self, schemeId, secret, productInstance, authType="JWT", mode="SANDBOX"):
+    def __init__(
+        self,
+        schemeId,
+        secret,
+        productInstance,
+        authType="JWT",
+        mode="SANDBOX",
+    ):
         self.schemeId = schemeId
         self.secret = secret
         self.productInstance = productInstance
         self.url = URLS.Sandbox.url if mode != "PRODUCTION" else URLS.Prod.url
         self.mode = mode
         self.authType = authType
-        
-        
+
         if self.authType != 'JWT':
             # Generate required headers
             self.headers = generate_setu_headers(
-                self.schemeId, self.secret, self.productInstance, self.url, self.authType
+                self.schemeId,
+                self.secret,
+                self.productInstance,
+                self.url,
+                self.authType,
             )
             # Set the url to v2
             self.url = self.url + '/v2'
@@ -42,7 +49,8 @@ class Deeplink:
         expiryDate=None,
         payeeName=None,
         settlement=None,
-        validationRules=None
+        validationRules=None,
+        additionalInfo=None,
     ):
 
         path = "/payment-links"
@@ -70,15 +78,24 @@ class Deeplink:
         if validationRules is not None:
             payload.update({"validationRules": validationRules})
 
+        if additionalInfo is not None:
+            payload.update({"additionalInfo": additionalInfo})
+
         # In case of JWT the token expires often enough to warrant creation of new tokens
         if self.authType == 'JWT':
             self.headers = generate_setu_headers(
-                self.schemeId, self.secret, self.productInstance, self.url, self.authType
+                self.schemeId,
+                self.secret,
+                self.productInstance,
+                self.url,
+                self.authType,
             )
 
         # Call API with required parameters
         response = requests.post(
-            self.url + path, json=payload, headers=self.headers
+            self.url + path,
+            json=payload,
+            headers=self.headers,
         )
 
         # Handle errors
@@ -87,22 +104,21 @@ class Deeplink:
         return response.json()
 
     # Check status of UPI payment link method
-    def check_payment_status(
-        self,
-        platformBillID
-    ):
+    def check_payment_status(self, platformBillID):
         path = "/payment-links/{}".format(platformBillID)
-        
+
         # In case of JWT the token expires often enough to warrant creation of new tokens
         if self.authType == 'JWT':
             self.headers = generate_setu_headers(
-                self.schemeId, self.secret, self.productInstance, self.url, self.authType
+                self.schemeId,
+                self.secret,
+                self.productInstance,
+                self.url,
+                self.authType,
             )
 
         # Call API with required parameters
-        response = requests.get(
-            self.url + path, headers=self.headers
-        )
+        response = requests.get(self.url + path, headers=self.headers)
 
         return response.json()
 
@@ -130,12 +146,18 @@ class Deeplink:
         # In case of JWT the token expires often enough to warrant creation of new tokens
         if self.authType == 'JWT':
             self.headers = generate_setu_headers(
-                self.schemeId, self.secret, self.productInstance, self.url, self.authType
+                self.schemeId,
+                self.secret,
+                self.productInstance,
+                self.url,
+                self.authType,
             )
 
         # Call API with required parameters
         response = requests.post(
-            self.url + path, json=payload, headers=self.headers
+            self.url + path,
+            json=payload,
+            headers=self.headers,
         )
 
         return response

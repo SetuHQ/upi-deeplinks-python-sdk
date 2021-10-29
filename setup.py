@@ -13,7 +13,10 @@ setup(
     long_description=README,
     long_description_content_type="text/markdown",
     license='MIT',
-    install_requires=["requests", "uuid", "PyJWT"],
+    install_requires=[
+        "requests==2.26.0",
+        "PyJWT==2.3.0",
+    ],
     packages=['setu'],
-    zip_safe=False
+    zip_safe=False,
 )

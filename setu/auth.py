@@ -31,14 +31,8 @@ def generate_oAuth_token(clientId, secret, url):
         "clientID": clientId,
         "secret": secret,
     }
-    headers = {
-        "Content-Type": "application/json"
-    }
-    response = requests.post(
-        url,
-        json=payload,
-        headers=headers
-    )
+    headers = {"Content-Type": "application/json"}
+    response = requests.post(url, json=payload, headers=headers)
 
     if response.status_code == 200:
         data = response.json()
@@ -47,11 +41,15 @@ def generate_oAuth_token(clientId, secret, url):
         raise
 
 
-def generate_setu_headers(schemeId, secret, setuProductInstanceID, url,  authType="JWT"):
+def generate_setu_headers(
+    schemeId,
+    secret,
+    setuProductInstanceID,
+    url,
+    authType="JWT",
+):
 
-    headers = {
-        "X-Setu-Product-Instance-ID": setuProductInstanceID
-    }
+    headers = {"X-Setu-Product-Instance-ID": setuProductInstanceID}
 
     if authType == "JWT":
         auth = generate_bearer_JWT(schemeId, secret)
