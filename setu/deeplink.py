@@ -51,6 +51,7 @@ class Deeplink:
         settlement=None,
         validationRules=None,
         additionalInfo=None,
+        transactionNote=None
     ):
 
         path = "/payment-links"
@@ -77,6 +78,9 @@ class Deeplink:
 
         if validationRules is not None:
             payload.update({"validationRules": validationRules})
+        
+        if transactionNote is not None:
+            payload.update({"transactionNote": transactionNote})
 
         if additionalInfo is not None:
             payload.update({"additionalInfo": additionalInfo})
