@@ -3,6 +3,9 @@ import datetime
 import uuid
 import requests
 
+AUTHTYPEJWT = "JWT"
+AUTHTYPEOAUTH = "OAUTH"
+
 
 def generate_JWT(schemeId, secret):
     payload = {
@@ -37,24 +40,24 @@ def generate_oAuth_token(clientId, secret, url):
     if response.status_code == 200:
         data = response.json()
         return "Bearer {}".format(data["data"]["token"])
-    else:
-        raise
+    raise
 
 
 def generate_setu_headers(
-    schemeId,
-    secret,
-    setuProductInstanceID,
-    url,
-    authType="JWT",
+    schemeId, secret, setuProductInstanceID, url, authType=AUTHTYPEJWT
 ):
+    headers = {
+        "X-Setu-Product-Instance-ID": setuProductInstanceID,
+        "Content-Type": "application/json",
+    }
 
-    headers = {"X-Setu-Product-Instance-ID": setuProductInstanceID}
-
-    if authType == "JWT":
+    if authType == AUTHTYPEJWT:
         auth = generate_bearer_JWT(schemeId, secret)
-    else:
+    elif authType == AUTHTYPEOAUTH:
         auth = generate_oAuth_token(schemeId, secret, url)
+    else:
+        raise Exception("Invalid authType")
 
     headers["Authorization"] = auth
+
     return headers
