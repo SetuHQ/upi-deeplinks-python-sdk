@@ -21,7 +21,7 @@ def test_deeplink(v2_creds):
 
     bill_amount = 100
     split_account = SplitAccount(
-        account_number="Biller-External-001",
+        account_number="123456789",
         account_ifsc="KKBK0000001",
         amount_value=50,
     )
@@ -38,7 +38,7 @@ def test_deeplink(v2_creds):
             settlement=SettlementSplits(
                 parts=[split_account],
                 primary_account=Account(
-                    account_number="Biller-External-001",
+                    account_number="987654321",
                     account_ifsc="KKBK0000001",
                 ),
             ),
