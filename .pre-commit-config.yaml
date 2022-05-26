@@ -31,5 +31,4 @@ repos:
     rev: v0.950
     hooks:
       - id: mypy
-        additional_dependencies: [types-requests==2.27.27]
         exclude: tests/
