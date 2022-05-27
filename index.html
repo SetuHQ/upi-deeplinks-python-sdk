@@ -305,23 +305,12 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#trigger-mock-payment-for-upi-payment-link-sandbox-only" class="md-nav__link">
     Trigger mock payment for UPI payment link (Sandbox only)
   </a>
   
-    <nav class="md-nav" aria-label="Trigger mock payment for UPI payment link (Sandbox only)">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#mock-settlement" class="md-nav__link">
@@ -348,6 +337,11 @@
   <a href="#get-individual-refund-status" class="md-nav__link">
     Get individual refund status
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -548,23 +542,12 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#trigger-mock-payment-for-upi-payment-link-sandbox-only" class="md-nav__link">
     Trigger mock payment for UPI payment link (Sandbox only)
   </a>
   
-    <nav class="md-nav" aria-label="Trigger mock payment for UPI payment link (Sandbox only)">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#mock-settlement" class="md-nav__link">
@@ -591,6 +574,11 @@
   <a href="#get-individual-refund-status" class="md-nav__link">
     Get individual refund status
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -643,14 +631,14 @@
 <!-- BEGIN INCLUDE ../README.md   -->
 <h2 id="setu-upi-deeplinks-python-sdk">Setu UPI DeepLinks: Python SDK<a class="headerlink" href="#setu-upi-deeplinks-python-sdk" title="Permanent link">&para;</a></h2>
 <p><code>setu</code> is a Python SDK for accessing Setu’s <a href="https://docs.setu.co/collect/biller/upi-deep-links">UPI Deeplinks</a> APIs. The SDK is designed with ease of access in mind, with native Python class objects for inputs &amp; ouputs and custom exceptions.</p>
-<p><a href="https://pypi.org/project/setu-python-sdk"><img alt="Version" src="https://img.shields.io/pypi/v/setu?color=%2320014B" /></a>
-<a href="https://www.npmjs.org/package/@setu/upi-deep-links"><img alt="Downloads" src="https://img.shields.io/pypi/dw/setu?color=%23FEB452" /></a>
+<p><a href="https://pypi.org/project/setu"><img alt="Version" src="https://img.shields.io/pypi/v/setu?color=%2320014B" /></a>
+<a href="https://pypi.org/project/setu"><img alt="Downloads" src="https://img.shields.io/pypi/dw/setu?color=%23FEB452" /></a>
 <a href="../LICENSE.md"><img alt="License" src="https://img.shields.io/pypi/l/setu?color=%23FE90A0" /></a></p>
 <p><img src="assets/deeplinks.png" alt="SDK in action" width="100%"></p>
 <p>Python package to connect to Setu's UPI Deep Link APIs</p>
 <h3 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h3>
-<p><a href="https://opensource.setu.co/setu-python-sdk">SDK documentation →</a>
-<a href="https://docs.setu.co/payments/upi-deeplinks">Full documentation →</a>
+<p><a href="https://opensource.setu.co/setu-python-sdk">SDK documentation →</a> .
+<a href="https://docs.setu.co/payments/upi-deeplinks">Full documentation →</a> .
 <a href="https://setu.co/payments/upi-deeplinks">Product overview →</a></p>
 <h4 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>pip install setu
@@ -697,7 +685,7 @@
 <span class="k">except</span> <span class="n">SetuAPIException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="k">assert</span> <span class="kc">False</span>
 </code></pre></div>
-<h2 id="trigger-mock-payment-for-upi-payment-link-sandbox-only">Trigger mock payment for UPI payment link (Sandbox only)<a class="headerlink" href="#trigger-mock-payment-for-upi-payment-link-sandbox-only" title="Permanent link">&para;</a></h2>
+<h4 id="trigger-mock-payment-for-upi-payment-link-sandbox-only">Trigger mock payment for UPI payment link (Sandbox only)<a class="headerlink" href="#trigger-mock-payment-for-upi-payment-link-sandbox-only" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
     <span class="n">credit_response</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">trigger_mock_payment</span><span class="p">(</span>
         <span class="nb">float</span><span class="p">(</span><span class="n">bill_amount</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="n">link</span><span class="o">.</span><span class="n">payment_link</span><span class="o">.</span><span class="n">upi_id</span><span class="p">,</span> <span class="n">link</span><span class="o">.</span><span class="n">platform_bill_id</span>
