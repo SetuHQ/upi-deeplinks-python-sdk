@@ -2,8 +2,8 @@
 
 `setu` is a Python SDK for accessing Setu’s [UPI Deeplinks](https://docs.setu.co/collect/biller/upi-deep-links) APIs. The SDK is designed with ease of access in mind, with native Python class objects for inputs & ouputs and custom exceptions.
 
-[![Version](https://img.shields.io/pypi/v/setu?color=%2320014B)](https://pypi.org/project/setu-python-sdk)
-[![Downloads](https://img.shields.io/pypi/dw/setu?color=%23FEB452)](https://www.npmjs.org/package/@setu/upi-deep-links)
+[![Version](https://img.shields.io/pypi/v/setu?color=%2320014B)](https://pypi.org/project/setu)
+[![Downloads](https://img.shields.io/pypi/dw/setu?color=%23FEB452)](https://pypi.org/project/setu)
 [![License](https://img.shields.io/pypi/l/setu?color=%23FE90A0)](LICENSE.md)
 
 <img src="assets/deeplinks.png" alt="SDK in action" width="100%">
@@ -12,8 +12,8 @@ Python package to connect to Setu's UPI Deep Link APIs
 
 ## Getting started
 
-[SDK documentation →](https://opensource.setu.co/setu-python-sdk)
-[Full documentation →](https://docs.setu.co/payments/upi-deeplinks)
+[SDK documentation →](https://opensource.setu.co/setu-python-sdk) .
+[Full documentation →](https://docs.setu.co/payments/upi-deeplinks) .
 [Product overview →](https://setu.co/payments/upi-deeplinks)
 
 ### Installation
@@ -74,7 +74,7 @@ except SetuAPIException as e:
     assert False
 ```
 
-# Trigger mock payment for UPI payment link (Sandbox only)
+### Trigger mock payment for UPI payment link (Sandbox only)
 
 ```python
 try:

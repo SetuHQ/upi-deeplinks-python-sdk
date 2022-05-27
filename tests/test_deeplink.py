@@ -3,8 +3,8 @@ import logging
 import time
 from datetime import datetime, timedelta
 
-from setu import Deeplink
-from setu.contract import Account, RefundRequestItem, SettlementSplits, SetuAPIException, SplitAccount
+from setu import Deeplink, SetuAPIException
+from setu.contract import Account, RefundRequestItem, SettlementSplits, SplitAccount
 
 LOGGER = logging.getLogger(__name__)
 
