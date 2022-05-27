@@ -6,9 +6,7 @@
 [![Downloads](https://img.shields.io/pypi/dw/setu?color=%23FEB452)](https://pypi.org/project/setu)
 [![License](https://img.shields.io/pypi/l/setu?color=%23FE90A0)](LICENSE.md)
 
-<img src="assets/deeplinks.png" alt="SDK in action" width="100%">
-
-Python package to connect to Setu's UPI Deep Link APIs
+<img src="https://raw.githubusercontent.com/SetuHQ/setu-python-sdk/master/assets/deeplinks.png" alt="SDK in action" width="100%">
 
 ## Getting started
 
