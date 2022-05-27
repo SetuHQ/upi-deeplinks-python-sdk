@@ -1,5 +1,5 @@
 """Endpoint module."""
-from setu_python_sdk.contract import API, AUTH_TYPE_OAUTH, MODE_PRODUCTION, AuthType, Mode
+from setu.contract import API, AUTH_TYPE_OAUTH, MODE_PRODUCTION, AuthType, Mode
 
 SANDBOX_BASE = "https://uat.setu.co/api"
 PRODUCTION_BASE = "https://prod.setu.co/api"

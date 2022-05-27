@@ -6,14 +6,14 @@ from typing import Any, Callable, Dict, List
 import requests
 from requests import Response
 
-from setu_python_sdk.auth import generate_jwt_token, generate_oauth_token
-from setu_python_sdk.body import (
+from setu.auth import generate_jwt_token, generate_oauth_token
+from setu.body import (
     get_batch_refund_body,
     get_create_payment_link_body,
     get_mock_credit_body,
     get_mock_settlement_body,
 )
-from setu_python_sdk.contract import (
+from setu.contract import (
     API,
     AUTH_TYPE_JWT,
     MODE_PRODUCTION,
@@ -30,8 +30,8 @@ from setu_python_sdk.contract import (
     SetuAPIException,
     ValidationRules,
 )
-from setu_python_sdk.endpoint import get_url_path
-from setu_python_sdk.serial import (
+from setu.endpoint import get_url_path
+from setu.serial import (
     BatchRefundStatusResponseSchema,
     CreatePaymentLinkResponseDataSchema,
     InitiateBatchRefundResponseDataSchema,

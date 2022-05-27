@@ -1,6 +1,6 @@
 """Tests for Endpoints module."""
-from setu_python_sdk.contract import API
-from setu_python_sdk.endpoint import get_url_path
+from setu.contract import API
+from setu.endpoint import get_url_path
 
 
 def test_get_uat_v1_payment_link_path():

@@ -1,1 +1,1 @@
-::: setu_python_sdk
+::: setu

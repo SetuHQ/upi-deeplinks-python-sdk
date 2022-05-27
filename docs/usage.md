@@ -3,5 +3,5 @@
 To use Setu UPI DeepLinks SDK in a project
 
 ```
-import setu_python_sdk
+import setu
 ```

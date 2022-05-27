@@ -1,7 +1,7 @@
 """Body builder helper module."""
 from typing import Any, Dict, List, cast
 
-from setu_python_sdk.contract import RefundRequestItem
+from setu.contract import RefundRequestItem
 
 
 def get_create_payment_link_body(**kwargs) -> Dict[str, Any]:

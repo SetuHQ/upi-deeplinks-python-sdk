@@ -5,8 +5,8 @@ import uuid
 import jwt
 import requests
 
-from setu_python_sdk.contract import API, AUTH_TYPE_OAUTH, Mode
-from setu_python_sdk.endpoint import get_url_path
+from setu.contract import API, AUTH_TYPE_OAUTH, Mode
+from setu.endpoint import get_url_path
 
 
 def generate_jwt_token(scheme_id: str, secret: str) -> str:

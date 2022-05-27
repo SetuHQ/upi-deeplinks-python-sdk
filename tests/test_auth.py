@@ -1,7 +1,7 @@
 """Tests for Auth module."""
 import jwt
 
-from setu_python_sdk.auth import generate_jwt_token, generate_oauth_token
+from setu.auth import generate_jwt_token, generate_oauth_token
 
 
 def test_generate_jwt_token(v1_creds):

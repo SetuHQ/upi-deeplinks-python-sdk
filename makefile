@@ -1,4 +1,4 @@
-sources = setu_python_sdk
+sources = setu
 
 .PHONY: test format lint unittest coverage pre-commit clean
 test: format lint unittest

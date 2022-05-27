@@ -4,7 +4,7 @@ import logging
 from marshmallow import EXCLUDE, Schema, fields, post_load
 from marshmallow_oneofschema import OneOfSchema
 
-from setu_python_sdk.contract import (
+from setu.contract import (
     Account,
     Amount,
     BatchRefundStatusResponse,

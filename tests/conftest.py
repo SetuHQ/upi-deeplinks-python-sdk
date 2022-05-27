@@ -1,7 +1,7 @@
 """Common PyTest fixtures to be consumed in tests."""
 import pytest
 
-from setu_python_sdk.contract import APICredentials
+from setu.contract import APICredentials
 
 
 @pytest.fixture

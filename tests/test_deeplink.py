@@ -1,10 +1,10 @@
-"""Tests for `setu_python_sdk` package."""
+"""Tests for `setu` package."""
 import logging
 import time
 from datetime import datetime, timedelta
 
-from setu_python_sdk import Deeplink
-from setu_python_sdk.contract import Account, RefundRequestItem, SettlementSplits, SetuAPIException, SplitAccount
+from setu import Deeplink
+from setu.contract import Account, RefundRequestItem, SettlementSplits, SetuAPIException, SplitAccount
 
 LOGGER = logging.getLogger(__name__)
 

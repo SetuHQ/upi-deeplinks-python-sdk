@@ -35,8 +35,8 @@ pip install setu
 ### Setup
 
 ```python
-from setu_python_sdk import Deeplink
-from setu_python_sdk.contract import RefundRequestItem, SetuAPIException
+from setu import Deeplink
+from setu.contract import RefundRequestItem, SetuAPIException
 
 dl = Deeplink(
     scheme_id="c4f57443-dc1e-428f-8c4e-e5fd531057d2",
