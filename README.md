@@ -12,8 +12,8 @@ Python package to connect to Setu's UPI Deep Link APIs
 
 ## Getting started
 
-[SDK documentation →](https://opensource.setu.co/setu-python-sdk) .
-[Full documentation →](https://docs.setu.co/payments/upi-deeplinks) .
+[SDK documentation →](https://opensource.setu.co/setu-python-sdk)  
+[Full documentation →](https://docs.setu.co/payments/upi-deeplinks)  
 [Product overview →](https://setu.co/payments/upi-deeplinks)
 
 ### Installation
