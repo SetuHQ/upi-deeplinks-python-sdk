@@ -4,7 +4,7 @@ import time
 from datetime import datetime, timedelta
 
 from setu import Deeplink, SetuAPIException
-from setu.contract import Account, RefundRequestItem, SettlementSplits, SplitAccount
+from setu.contract import Account, RefundRequestItem, SettlementSplits, SplitAccount, ValidationRules
 
 LOGGER = logging.getLogger(__name__)
 
@@ -41,6 +41,11 @@ def test_deeplink(v2_creds):
                     account_number="987654321",
                     account_ifsc="KKBK0000001",
                 ),
+            ),
+            validation_rules=ValidationRules(
+                source_accounts=[
+                    Account(account_number="987654321", account_ifsc="KKBK0000001"),
+                ]
             ),
             additional_info={"sample_key": "sample_value"},
         )
