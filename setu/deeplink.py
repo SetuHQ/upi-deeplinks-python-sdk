@@ -4,6 +4,7 @@ from datetime import datetime
 from typing import Any, Callable, Dict, List
 
 import requests
+from deprecated import deprecated
 from requests import Response
 
 from setu.auth import generate_jwt_token, generate_oauth_token
@@ -18,7 +19,6 @@ from setu.contract import (
     AUTH_TYPE_JWT,
     MODE_PRODUCTION,
     AuthType,
-    BatchRefundStatusResponse,
     CreatePaymentLinkResponseData,
     InitiateBatchRefundResponse,
     MockCreditResponseData,
@@ -26,18 +26,20 @@ from setu.contract import (
     PaymentLinkStatusResponseData,
     RefundRequestItem,
     RefundResponseItem,
+    RefundStatusByIdentifierResponse,
+    RefundStatusIdentifierType,
     SettlementSplits,
     SetuAPIException,
     ValidationRules,
 )
 from setu.endpoint import get_url_path
 from setu.serial import (
-    BatchRefundStatusResponseSchema,
     CreatePaymentLinkResponseDataSchema,
     InitiateBatchRefundResponseDataSchema,
     MockCreditResponseDataSchema,
     PaymentLinkStatusResponseDataSchema,
     RefundResponseItemSchema,
+    RefundStatusByIdentifierResponseSchema,
     SetuErrorResponseSchema,
 )
 
@@ -213,14 +215,29 @@ class Deeplink:
         initiate_batch_refund_response_data_schema = InitiateBatchRefundResponseDataSchema()
         return initiate_batch_refund_response_data_schema.load(api_response.json()['data'])
 
+    @deprecated(version="1.2.0", reason="Use the more generic get_refund_status_by_identifier method instead")
     @Decorators.auth_handler
-    def get_batch_refund_status(self, batch_refund_id: str) -> BatchRefundStatusResponse:
+    def get_batch_refund_status(self, batch_refund_id: str) -> RefundStatusByIdentifierResponse:
         """Get batch refund status."""
         api_response = self.session.get(
             "{}/batch/{}".format(get_url_path(API.REFUNDS_BASE, self.auth_type, self.mode), batch_refund_id),
             headers=self.headers,
         )
-        batch_refund_status_response_schema = BatchRefundStatusResponseSchema()
+        batch_refund_status_response_schema = RefundStatusByIdentifierResponseSchema()
+        return batch_refund_status_response_schema.load(api_response.json()['data'])
+
+    @Decorators.auth_handler
+    def get_refund_status_by_identifier(
+        self, identifier_type: RefundStatusIdentifierType, identifier_value: str
+    ) -> RefundStatusByIdentifierResponse:
+        """Get batch refund status."""
+        api_response = self.session.get(
+            "{}/{}/{}".format(
+                get_url_path(API.REFUNDS_BASE, self.auth_type, self.mode), identifier_type, identifier_value
+            ),
+            headers=self.headers,
+        )
+        batch_refund_status_response_schema = RefundStatusByIdentifierResponseSchema()
         return batch_refund_status_response_schema.load(api_response.json()['data'])
 
     @Decorators.auth_handler

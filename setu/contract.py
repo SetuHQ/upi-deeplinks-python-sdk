@@ -2,7 +2,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
-from typing import Any, Dict, List, NamedTuple, Optional, Union
+from typing import Any, Dict, List, Literal, NamedTuple, Optional, Union
 
 # Auth types
 AuthType = str  # TODO: Figure out a way to use Literal["JWT", "OAUTH"] across Python versions
@@ -203,8 +203,10 @@ class InitiateBatchRefundResponse:
 
 
 @dataclass
-class BatchRefundStatusResponse:
-    """Batch Refund Status Response."""
+class RefundStatusByIdentifierResponse:
+    """Refund Status By Identifier Response."""
 
-    batch_id: str
     refunds: List[RefundResponseItem]
+
+
+RefundStatusIdentifierType = Literal["batch", "bill"]

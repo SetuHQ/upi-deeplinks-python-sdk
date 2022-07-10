@@ -19,11 +19,11 @@ def test_deeplink(v2_creds):
         mode="SANDBOX",
     )
 
-    bill_amount = 100
+    bill_amount = 1000
     split_account = SplitAccount(
         account_number="123456789",
         account_ifsc="KKBK0000001",
-        amount_value=50,
+        amount_value=500,
     )
 
     try:
@@ -98,6 +98,16 @@ def test_deeplink(v2_creds):
         refund_batch_status_response = dl.get_batch_refund_status(batch_initiate_refund_response.batch_id)
         LOGGER.info(refund_batch_status_response)
         assert refund_batch_status_response.refunds[0].bill_id == link.platform_bill_id
+
+        refund_batch_status_response = dl.get_refund_status_by_identifier(
+            "batch", batch_initiate_refund_response.batch_id
+        )
+        LOGGER.info(refund_batch_status_response)
+        assert refund_batch_status_response.refunds[0].bill_id == link.platform_bill_id
+
+        refund_batch_status_response = dl.get_refund_status_by_identifier("bill", link.platform_bill_id)
+        LOGGER.info(refund_batch_status_response)
+        assert refund_batch_status_response.refunds[0].status == "MarkedForRefund"
 
         # Get individual refund status
         refund_status_response = dl.get_refund_status(batch_initiate_refund_response.refunds[0].id)
