@@ -29,6 +29,7 @@ PyJWT = "^2.4.0"
 requests = "^2.27.1"
 marshmallow = "^3.14.1"
 marshmallow-oneofschema = "^3.0.1"
+Deprecated = "^1.2.13"
 
 [tool.poetry.dev-dependencies]
 black  = "22.3.0"

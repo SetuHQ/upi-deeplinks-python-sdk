@@ -59,7 +59,7 @@ Ready to contribute? Here's how to set up `setu-python-sdk` for local developmen
 4. Install dependencies and start your virtualenv:
 
     ```
-    $ poetry install -E test -E doc -E dev
+    $ poetry install
     ```
 
 5. Create a branch for local development:

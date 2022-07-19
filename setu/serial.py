@@ -7,7 +7,6 @@ from marshmallow_oneofschema import OneOfSchema
 from setu.contract import (
     Account,
     Amount,
-    BatchRefundStatusResponse,
     CreatePaymentLinkResponseData,
     InitiateBatchRefundResponse,
     MockCreditResponseData,
@@ -15,6 +14,7 @@ from setu.contract import (
     PaymentLinkStatusResponseData,
     Receipt,
     RefundResponseItem,
+    RefundStatusByIdentifierResponse,
     SetuErrorResponseData,
 )
 
@@ -206,13 +206,12 @@ class InitiateBatchRefundResponseDataSchema(Schema):
         return InitiateBatchRefundResponse(**data)
 
 
-class BatchRefundStatusResponseSchema(Schema):
-    """Get Batch Refund Status Response Data Schema."""
+class RefundStatusByIdentifierResponseSchema(Schema):
+    """Get Refund Status By Identifier Response Data Schema."""
 
-    batch_id = fields.Str(data_key="batchID")
     refunds = fields.List(fields.Nested(RefundResponseItemSchema()))
 
     @post_load
     def make_batch_refund_response(self, data, **kwargs):
-        """Deserialize to BatchRefundStatusResponse object."""
-        return BatchRefundStatusResponse(**data)
+        """Deserialize to RefundStatusByIdentifierResponse object."""
+        return RefundStatusByIdentifierResponse(**data)
