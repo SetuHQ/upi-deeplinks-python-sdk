@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.0] - 2022-07-19
+
+### Breaking change
+
+-   The batch status API has changed to a more generic status API, and the `batch_id` is no longer returned in the response.
+
 ## [1.1.1] - 2022-05-27
 
 ### Bug fixes
