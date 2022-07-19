@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "setu"
-version = "1.1.1"
+version = "2.0.0"
 homepage = "https://github.com/SetuHQ/setu-python-sdk"
 description = "Python package to connect to Setu's UPI Deep Link APIs."
 authors = ["Naresh R <ghostwriternr@gmail.com>"]

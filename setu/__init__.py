@@ -2,6 +2,6 @@
 from setu.contract import SetuAPIException
 from setu.deeplink import Deeplink
 
-__version__ = '1.1.1'
+__version__ = '2.0.0'
 
 __all__ = ["Deeplink", "SetuAPIException"]
