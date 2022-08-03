@@ -10,7 +10,7 @@
 
 ## Getting started
 
-[SDK documentation →](https://opensource.setu.co/setu-python-sdk)  
+[SDK documentation →](https://setuhq.github.io/upi-deeplinks-python-sdk/) 
 [Full documentation →](https://docs.setu.co/payments/upi-deeplinks)  
 [Product overview →](https://setu.co/payments/upi-deeplinks)
 
