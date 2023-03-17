@@ -188,6 +188,15 @@ class Deeplink:
         return mock_credit_response_data_schema.load(api_response.json()['data'])
 
     @Decorators.auth_handler
+    def expire_payment_link(self, platform_bill_id: str):
+        """Expire payment link."""
+        self.session.post(
+            get_url_path(API.EXPIRE_BILL, self.auth_type, self.mode).format(platform_bill_id),
+            headers=self.headers,
+        )
+        return
+
+    @Decorators.auth_handler
     def trigger_mock_settlement(self, utrs: List[str]):
         """Trigger mock settlement."""
         payload: Dict[str, Any] = get_mock_settlement_body(utrs=utrs)

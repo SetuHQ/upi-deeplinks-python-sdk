@@ -92,6 +92,15 @@ except SetuAPIException as e:
     assert False
 ```
 
+### Expire bill payment
+
+```python
+try:
+    dl.expire_payment_link(link.platform_bill_id)
+except SetuAPIException as e:
+    assert False
+```
+
 ### Initiate Refund
 
 ```python
