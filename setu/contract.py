@@ -189,7 +189,9 @@ class RefundResponseItem:
     bill_id: str
     transaction_ref_id: str
     amount: Amount
+    type: str
     status: str
+    created_at: datetime
     deductions: Optional[List[Deduction]] = None
     initiated_at: Optional[datetime] = None
 

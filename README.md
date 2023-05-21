@@ -114,7 +114,7 @@ try:
             ),
         ],
     )
-    assert batch_initiate_refund_response.refunds[0].status == "MarkedForRefund"
+    assert batch_initiate_refund_response.refunds[0].status == "Pending"
 except SetuAPIException as e:
     assert False
 ```
