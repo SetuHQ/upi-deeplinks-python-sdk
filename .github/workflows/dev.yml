@@ -2,9 +2,9 @@ name: dev workflow
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [master, main]
   pull_request:
-    branches: [ master, main ]
+    branches: [master, main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,12 +26,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install poetry tox tox-gh-actions
+          pip install poetry tox tox-gh-actions==2.12.0
           poetry install
 
       - name: test with tox
-        run:
-          tox
+        run: tox
 
       - name: list files
         run: ls -l .
