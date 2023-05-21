@@ -2,9 +2,9 @@ name: dev workflow
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [master, main]
   pull_request:
-    branches: [ master, main ]
+    branches: [master, main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -13,7 +13,7 @@ jobs:
   test:
     strategy:
       matrix:
-        python-versions: [3.6, 3.7, 3.8, 3.9]
+        python-versions: ["3.7", "3.8", "3.9"]
         os: [ubuntu-18.04, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
 
@@ -30,8 +30,7 @@ jobs:
           poetry install
 
       - name: test with tox
-        run:
-          tox
+        run: tox
 
       - name: list files
         run: ls -l .
