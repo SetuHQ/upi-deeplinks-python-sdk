@@ -44,7 +44,9 @@ jobs:
         run: poetry install -vvv --no-interaction
 
       - name: test with tox
-        run: poetry run tox
+        run: |
+          source $VENV
+          poetry run tox
 
       - name: list files
         run: ls -l .
