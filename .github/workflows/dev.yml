@@ -38,19 +38,15 @@ jobs:
 
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: |
-          source $VENV
-          poetry install --no-interaction --no-root
+        run: poetry install --no-interaction --no-root
 
       - name: Install package
-        run: |
-          source $VENV
-          poetry install --no-interaction
+        run: poetry install --no-interaction
 
-      - name: test with tox
+      - name: Run tests
         run: |
           source $VENV
-          tox
+          pytest tests
 
       - name: list files
         run: ls -l .
