@@ -3017,7 +3017,9 @@ RefundResponseItem        </code>
     <span class="n">bill_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">transaction_ref_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">amount</span><span class="p">:</span> <span class="n">Amount</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">status</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">created_at</span><span class="p">:</span> <span class="n">datetime</span>
     <span class="n">deductions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Deduction</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">initiated_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 </code></pre></div>
@@ -3026,6 +3028,8 @@ RefundResponseItem        </code>
 
 
   <div class="doc doc-children">
+
+
 
 
 
@@ -3649,6 +3653,15 @@ Deeplink        </code>
         <span class="k">return</span> <span class="n">mock_credit_response_data_schema</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">api_response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
 
     <span class="nd">@Decorators</span><span class="o">.</span><span class="n">auth_handler</span>
+    <span class="k">def</span> <span class="nf">expire_payment_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_bill_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Expire payment link.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="n">get_url_path</span><span class="p">(</span><span class="n">API</span><span class="o">.</span><span class="n">EXPIRE_BILL</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">platform_bill_id</span><span class="p">),</span>
+            <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@Decorators</span><span class="o">.</span><span class="n">auth_handler</span>
     <span class="k">def</span> <span class="nf">trigger_mock_settlement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">utrs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;Trigger mock settlement.&quot;&quot;&quot;</span>
         <span class="n">payload</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_mock_settlement_body</span><span class="p">(</span><span class="n">utrs</span><span class="o">=</span><span class="n">utrs</span><span class="p">)</span>
@@ -3962,6 +3975,7 @@ Decorators        </code>
     </div>
 
   </div>
+
 
 
 
@@ -5056,7 +5070,9 @@ RefundResponseItemSchema            (<span title="marshmallow.schema.Schema">Sch
     <span class="n">transaction_ref_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Str</span><span class="p">(</span><span class="n">data_key</span><span class="o">=</span><span class="s2">&quot;transactionRefID&quot;</span><span class="p">)</span>
     <span class="n">amount</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Nested</span><span class="p">(</span><span class="n">AmountSchema</span><span class="p">())</span>
     <span class="n">status</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Str</span><span class="p">()</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Str</span><span class="p">()</span>
     <span class="n">deductions</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">fields</span><span class="o">.</span><span class="n">Nested</span><span class="p">(</span><span class="n">DeductionResponseSchema</span><span class="p">()),</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">created_at</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">DateTime</span><span class="p">(</span><span class="n">data_key</span><span class="o">=</span><span class="s2">&quot;createdAt&quot;</span><span class="p">)</span>
     <span class="n">initiated_at</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">DateTime</span><span class="p">(</span><span class="n">data_key</span><span class="o">=</span><span class="s2">&quot;initiatedAt&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="nd">@post_load</span>
@@ -5069,6 +5085,8 @@ RefundResponseItemSchema            (<span title="marshmallow.schema.Schema">Sch
 
 
   <div class="doc doc-children">
+
+
 
 
 

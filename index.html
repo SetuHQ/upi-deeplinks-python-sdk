@@ -320,6 +320,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#expire-bill-payment" class="md-nav__link">
+    Expire bill payment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#initiate-refund" class="md-nav__link">
     Initiate Refund
   </a>
@@ -557,6 +564,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#expire-bill-payment" class="md-nav__link">
+    Expire bill payment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#initiate-refund" class="md-nav__link">
     Initiate Refund
   </a>
@@ -636,7 +650,7 @@
 <a href="../LICENSE.md"><img alt="License" src="https://img.shields.io/pypi/l/setu?color=%23FE90A0" /></a></p>
 <p><img src="https://raw.githubusercontent.com/SetuHQ/setu-python-sdk/master/assets/deeplinks.png" alt="SDK in action" width="100%"></p>
 <h3 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h3>
-<p><a href="https://opensource.setu.co/setu-python-sdk">SDK documentation →</a><br />
+<p><a href="https://setuhq.github.io/upi-deeplinks-python-sdk/">SDK documentation →</a><br />
 <a href="https://docs.setu.co/payments/upi-deeplinks">Full documentation →</a><br />
 <a href="https://setu.co/payments/upi-deeplinks">Product overview →</a></p>
 <h4 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h4>
@@ -698,6 +712,12 @@
 <span class="k">except</span> <span class="n">SetuAPIException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="k">assert</span> <span class="kc">False</span>
 </code></pre></div>
+<h4 id="expire-bill-payment">Expire bill payment<a class="headerlink" href="#expire-bill-payment" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">dl</span><span class="o">.</span><span class="n">expire_payment_link</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">platform_bill_id</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">SetuAPIException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="kc">False</span>
+</code></pre></div>
 <h4 id="initiate-refund">Initiate Refund<a class="headerlink" href="#initiate-refund" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
     <span class="n">batch_initiate_refund_response</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">initiate_batch_refund</span><span class="p">(</span>
@@ -709,7 +729,7 @@
             <span class="p">),</span>
         <span class="p">],</span>
     <span class="p">)</span>
-    <span class="k">assert</span> <span class="n">batch_initiate_refund_response</span><span class="o">.</span><span class="n">refunds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;MarkedForRefund&quot;</span>
+    <span class="k">assert</span> <span class="n">batch_initiate_refund_response</span><span class="o">.</span><span class="n">refunds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;Pending&quot;</span>
 <span class="k">except</span> <span class="n">SetuAPIException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="k">assert</span> <span class="kc">False</span>
 </code></pre></div>
