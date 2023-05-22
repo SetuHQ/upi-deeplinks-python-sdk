@@ -2,7 +2,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
-from typing import Any, Dict, List, Literal, NamedTuple, Optional, Union
+from typing_extensions import Any, Dict, List, Literal, NamedTuple, Optional, Union
 
 # Auth types
 AuthType = str  # TODO: Figure out a way to use Literal["JWT", "OAUTH"] across Python versions

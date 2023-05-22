@@ -1,7 +1,7 @@
 """Main module."""
 import logging
 from datetime import datetime
-from typing import Any, Callable, Dict, List
+from typing_extensions import Any, Callable, Dict, List
 
 import requests
 from deprecated import deprecated
