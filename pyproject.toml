@@ -13,7 +13,6 @@ classifiers=[
     'License :: OSI Approved :: MIT License',
     'Natural Language :: English',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
 ]
@@ -23,7 +22,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.7.0,<4.0"
+python = ">=3.8.0,<4.0"
 PyJWT = "^2.4.0"
 requests = "^2.27.1"
 marshmallow = "^3.14.1"
@@ -58,7 +57,7 @@ types-deprecated = "^1.2.9.2"
 [tool.black]
 line-length = 120
 skip-string-normalization = true
-target-version = ['py37', 'py38']
+target-version = ['py38']
 include = '\.pyi?$'
 exclude = '''
 /(
