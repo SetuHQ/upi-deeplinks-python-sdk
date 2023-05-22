@@ -46,7 +46,7 @@ jobs:
       - name: Run tests
         run: |
           source $VENV
-          pytest tests
+          poetry run pytest tests
 
       - name: list files
         run: ls -l .
