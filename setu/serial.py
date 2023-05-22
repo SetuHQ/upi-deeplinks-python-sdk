@@ -175,7 +175,9 @@ class RefundResponseItemSchema(Schema):
     transaction_ref_id = fields.Str(data_key="transactionRefID")
     amount = fields.Nested(AmountSchema())
     status = fields.Str()
+    type = fields.Str()
     deductions = fields.List(fields.Nested(DeductionResponseSchema()), required=False)
+    created_at = fields.DateTime(data_key="createdAt")
     initiated_at = fields.DateTime(data_key="initiatedAt", required=False)
 
     @post_load

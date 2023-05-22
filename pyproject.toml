@@ -13,8 +13,6 @@ classifiers=[
     'License :: OSI Approved :: MIT License',
     'Natural Language :: English',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
 ]
@@ -24,7 +22,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.6.2,<4.0"
+python = ">=3.8.0,<4.0"
 PyJWT = "^2.4.0"
 requests = "^2.27.1"
 marshmallow = "^3.14.1"
@@ -53,11 +51,13 @@ mkdocs-autorefs = "^0.3.1"
 pre-commit = "^2.17.0"
 toml = "^0.10.2"
 bump2version = "^1.0.1"
+types-requests = "^2.30.0.0"
+types-deprecated = "^1.2.9.2"
 
 [tool.black]
 line-length = 120
 skip-string-normalization = true
-target-version = ['py36', 'py37', 'py38']
+target-version = ['py38']
 include = '\.pyi?$'
 exclude = '''
 /(
@@ -86,5 +86,5 @@ skip_gitignore = true
 #skip_glob = docs/conf.py
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

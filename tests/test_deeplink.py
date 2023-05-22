@@ -92,7 +92,7 @@ def test_deeplink(v2_creds):
             ],
         )
         LOGGER.info(batch_initiate_refund_response)
-        assert batch_initiate_refund_response.refunds[0].status == "MarkedForRefund"
+        assert batch_initiate_refund_response.refunds[0].status == "Pending"
 
         # Get refund batch status
         refund_batch_status_response = dl.get_batch_refund_status(batch_initiate_refund_response.batch_id)
@@ -107,7 +107,7 @@ def test_deeplink(v2_creds):
 
         refund_batch_status_response = dl.get_refund_status_by_identifier("bill", link.platform_bill_id)
         LOGGER.info(refund_batch_status_response)
-        assert refund_batch_status_response.refunds[0].status == "MarkedForRefund"
+        assert refund_batch_status_response.refunds[0].status == "Pending"
 
         # Get individual refund status
         refund_status_response = dl.get_refund_status(batch_initiate_refund_response.refunds[0].id)
