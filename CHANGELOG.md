@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.1.0] - 2023-05-22
+
+-   Refund APIs now return 2 additional fields - `created_at` and `type`.
+-   Refund API tests have been updated to reflect the simplified status values of `Created`, `Pending` and `Initiated`.
+
 ## [2.0.0] - 2022-07-19
 
 ### Breaking change
